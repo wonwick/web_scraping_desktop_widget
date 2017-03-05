@@ -1,6 +1,9 @@
 #! /usr/bin/python3
 from lxml import html
-import requests
+import requests 
+thefile="progress_pie.txt"
+
+
 page = requests.get('http://ugvle.ucsc.cmb.ac.lk/')
 tree = html.fromstring(page.content)
 
@@ -25,4 +28,17 @@ for i in range(len(postTopics)):
     print("")
     print("     ",postDetails1[i])
     print("\n\n")
-
+with open("topics.html", 'w') as f:
+    f.write("<html>")
+    
+    f.write("<STYLE type=\"text/css\">\n BODY { background: rgba(0,0,0,0)}\n</STYLE>\n<BODY>")
+    f.write("<h4>Virtual Learning Environment</h4>\n")
+    for i in range(len(postTopics)):
+        f.write("<h6>")
+        f.write(postTopics[i])
+        f.write("</h6\n")
+        f.write("<p style=\"font-size:10%;\">")
+        #f.write(postDetails1[i])
+        f.write("</p>\n")
+    f.write("<BODY> \n<HTML>")
+ 
